@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopgood/compunent/data.dart';
 import 'package:shopgood/compunent/product.dart';
+import 'package:shopgood/proverder/category_provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -110,32 +112,38 @@ class _HomeState extends State<Home> {
                 );
               }).toList(),
             ),
-            SizedBox(
-              height: 50,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: category.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => ontap(index),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: curRentIndex == index
-                                ? Colors.amber
-                                : const Color.fromARGB(255, 12, 125, 182)),
-                        width: 100,
-                        height: 50,
-                        margin: const EdgeInsets.all(8.0),
-                        child: Center(
-                            child: Text(
-                          category[index],
-                          style: const TextStyle(color: Colors.white),
-                        )),
-                      ),
-                    );
-                  }),
+            Consumer<CategoryProvider>(
+              builder: (context, value, child) {
+                return SizedBox(
+                  height: 50,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: category.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            value.chagecategory(index);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: value.currentIndex == index
+                                    ? Colors.amber
+                                    : const Color.fromARGB(255, 12, 125, 182)),
+                            width: 100,
+                            height: 50,
+                            margin: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: Text(
+                              category[index],
+                              style: const TextStyle(color: Colors.white),
+                            )),
+                          ),
+                        );
+                      }),
+                );
+              },
             ),
             const Row(
               children: [

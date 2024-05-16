@@ -15,14 +15,14 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: SizedBox(
-        height: 70,
+        height: 100,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             children: [
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(15)),
                 height: 50,
                 width: 100,
@@ -32,7 +32,7 @@ class _DetailScreenState extends State<DetailScreen> {
               Container(
                 height: 50,
                 width: 300,
-                decoration: BoxDecoration(
+                decoration: BoxDecoration(color: Colors.blue,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: SvgPicture.asset("assets/images/wallet.svg"),
