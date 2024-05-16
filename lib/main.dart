@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopgood/compunent/bottomNav.dart'; 
+import 'package:shopgood/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +15,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavigatorComponent(),
+      home: const Home(),
+      theme: ThemeData(fontFamily: "notosanlao.ttf"),
     );
   }
 }
