@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shopgood/compunent/data.dart';
-import 'package:shopgood/home/widget/detailWidget.dart';
+import 'package:shopgood/view/compunent/data.dart';
+import 'package:shopgood/view/home/widget/detailWidget.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});

@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopgood/compunent/data.dart';
-import 'package:shopgood/compunent/product.dart';
+import 'package:shopgood/view/compunent/data.dart';
+import 'package:shopgood/view/compunent/product.dart';
 import 'package:shopgood/proverder/category_provider.dart';
 
 class Home extends StatefulWidget {
