@@ -6,7 +6,7 @@ Loading(BuildContext context) {
       builder: (_) {
         return AlertDialog(
           content: Container(
-            height: 50,
+            height: 100,
             child: Row(
               children: [
                 CircularProgressIndicator(),
@@ -16,7 +16,7 @@ Loading(BuildContext context) {
             ),
           ),
         );
-      });
+      },);
 }
 
 Success(BuildContext context) {

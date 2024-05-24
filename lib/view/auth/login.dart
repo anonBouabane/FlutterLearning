@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopgood/proverder/authprovider.dart';
-import 'package:shopgood/view/auth/register.dart'; 
+import 'package:shopgood/view/auth/register.dart';
+import 'package:shopgood/view/compunent/loading.dart'; 
 
 class LogInscreen extends StatefulWidget {
   const LogInscreen({super.key});
@@ -126,9 +127,10 @@ class _LogInscreenState extends State<LogInscreen> {
                       child: GestureDetector(
                         onTap: () {
                           print("ok");
-                          value.login(
+                          value.Login(
                               phoneNumber: phoneNumber.text,
-                              passWord: passWord.text);
+                              password: passWord.text);
+                              Loading(context);
                         },
                         child: Container(
                           height: 50,
@@ -160,7 +162,7 @@ class _LogInscreenState extends State<LogInscreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => RegisterScreen()));
+                                  builder: (context) => Register()));
                         },
                         child: Container(
                           height: 50,

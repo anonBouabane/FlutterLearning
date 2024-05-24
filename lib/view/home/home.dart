@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopgood/proverder/authprovider.dart';
 import 'package:shopgood/view/compunent/data.dart';
 import 'package:shopgood/view/compunent/product.dart';
 import 'package:shopgood/proverder/category_provider.dart';
@@ -15,6 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -29,7 +31,7 @@ class _HomeState extends State<Home> {
                 color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
-          actions: const [
+          actions: [
             CircleAvatar(
               backgroundColor: Colors.white,
               radius: 15,
@@ -40,12 +42,17 @@ class _HomeState extends State<Home> {
             ),
             Padding(
               padding: EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 15,
-                child: Icon(
-                  Icons.notification_important_rounded,
-                  color: Colors.amber,
+              child: GestureDetector(
+                onTap: () {
+                  auth.exitApp();
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 15,
+                  child: Icon(
+                    Icons.exit_to_app,
+                    color: Colors.amber,
+                  ),
                 ),
               ),
             ),
