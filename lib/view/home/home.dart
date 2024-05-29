@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopgood/proverder/authprovider.dart';
-import 'package:shopgood/view/compunent/data.dart';
+import 'package:shopgood/proverder/banner_provider.dart'; 
 import 'package:shopgood/view/compunent/product.dart';
 import 'package:shopgood/proverder/category_provider.dart';
 
@@ -98,44 +98,53 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            CarouselSlider(
-              options: CarouselOptions(
-                  height: 200.0,
-                  autoPlay: true,
-                  enlargeCenterPage: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 400)),
-              items: model.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
+            Consumer<BannerProvider>(builder: (context, bannerProvider, child) {
+              if (bannerProvider.isloading == true) {
+                return Center(child: CircularProgressIndicator());
+              }
+              if (bannerProvider.banners.isEmpty) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return CarouselSlider(
+                options: CarouselOptions(
+                    height: 140,
+                    autoPlay: true,
+                    viewportFraction: 1,
+                    // enlargeCenterPage: true,
+                    autoPlayAnimationDuration: Duration(milliseconds: 100)),
+                items: bannerProvider.banners.map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 140,
                         width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: const BoxDecoration(color: Colors.amber),
-                        child: Image.asset(
-                          i,
-                          fit: BoxFit.cover,
-                        ));
-                  },
-                );
-              }).toList(),
-            ),
-            Consumer<CategoryProvider>(
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(color: Colors.amber),
+                        child: Image.network(i.image.toString(),
+                            fit: BoxFit.cover),
+                      );
+                    },
+                  );
+                }).toList(),
+              );
+            }),
+            Consumer<CateogryProvider>(
               builder: (context, value, child) {
                 return SizedBox(
                   height: 50,
                   child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: category.length,
+                      itemCount:value.category.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            value.chagecategory(index);
+                            value.changeCategory(index);
                           },
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: value.currentIndex == index
+                                color: value.currenIndex == index
                                     ? Colors.amber
                                     : const Color.fromARGB(255, 12, 125, 182)),
                             width: 100,
@@ -143,7 +152,7 @@ class _HomeState extends State<Home> {
                             margin: const EdgeInsets.all(8.0),
                             child: Center(
                                 child: Text(
-                              category[index],
+                              value.category[index].title.toString(),
                               style: const TextStyle(color: Colors.white),
                             )),
                           ),

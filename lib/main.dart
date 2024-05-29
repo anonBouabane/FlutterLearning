@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shopgood/proverder/authprovider.dart';
+import 'package:shopgood/proverder/banner_provider.dart';
 import 'package:shopgood/router/route.dart';
 import 'package:shopgood/proverder/category_provider.dart';
 import 'package:shopgood/view/auth/splashScreen.dart';
@@ -16,8 +17,9 @@ void main() async {
   await HiveDatabase().hiveDatabase();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => CategoryProvider()),
-      ChangeNotifierProvider(create: (_) => AuthProvider())
+      ChangeNotifierProvider(create: (_) => CateogryProvider()..getAllcategory()),
+      ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ChangeNotifierProvider(create: (_)=>BannerProvider()..getAllBanner())
     ],
     child: MyApp(),
   ));
@@ -33,8 +35,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return MaterialApp( debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       theme: ThemeData(fontFamily: "notosanlao.ttf"),
       navigatorKey: NavigationService.navigationKey,

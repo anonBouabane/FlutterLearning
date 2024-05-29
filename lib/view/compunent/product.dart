@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart'; 
+import 'package:provider/provider.dart';
 import 'package:shopgood/view/home/detail.dart';
 import 'package:shopgood/proverder/category_provider.dart';
 
@@ -13,7 +13,8 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<CategoryProvider>(builder: (context, categoryProvider, child) {
+    return Consumer<CateogryProvider>(
+        builder: (context, categoryProvider, child) {
       return GridView.builder(
           itemCount: 4,
           shrinkWrap: true,
@@ -39,7 +40,11 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: [
                       ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.network(categoryProvider.product[categoryProvider.currentIndex]["image"],scale: 1,)),
+                          child: Image.network(
+                            categoryProvider
+                                .product[categoryProvider.currenIndex]["image"],
+                            scale: 1,
+                          )),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(

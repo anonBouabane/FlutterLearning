@@ -4,4 +4,6 @@ class ApiPath {
   static const String login = "${baseUrl}/user/login";
   static const String register = "${baseUrl}/user/register";
   static const String refreshToken = "${baseUrl}/user/refreshToken";
+  static const String getallBanner = "${baseUrl}/banner/getAll";
+  static const String getallCategory = "${baseUrl}/category/getAll";
 }
