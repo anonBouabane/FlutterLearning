@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart'; 
 import 'package:shopgood/view/auth/login.dart';
 import 'package:shopgood/view/auth/register.dart';
-import 'package:shopgood/view/compunent/bottomNav.dart';
+import 'package:shopgood/compunent/bottomNav.dart';
 import 'package:shopgood/view/home/home.dart';
 
 class RouteAPI {

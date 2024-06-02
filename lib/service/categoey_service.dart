@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import 'package:shopgood/model/category_model.dart';
-import 'package:shopgood/view/compunent/api_path.dart';
+import 'package:shopgood/compunent/api_path.dart';
 
 class CategoryService {
   final dio = new Dio();

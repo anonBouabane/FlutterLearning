@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopgood/proverder/authprovider.dart';
-import 'package:shopgood/view/compunent/loading.dart';
+import 'package:shopgood/compunent/loading.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});

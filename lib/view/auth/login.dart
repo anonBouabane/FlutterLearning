@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopgood/proverder/authprovider.dart';
 import 'package:shopgood/view/auth/register.dart';
-import 'package:shopgood/view/compunent/loading.dart'; 
+import 'package:shopgood/compunent/loading.dart'; 
 
 class LogInscreen extends StatefulWidget {
   const LogInscreen({super.key});

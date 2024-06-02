@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:shopgood/view/compunent/api_path.dart';
-import 'package:shopgood/view/compunent/hive_database.dart';
+import 'package:shopgood/compunent/api_path.dart';
+import 'package:shopgood/compunent/hive_database.dart';
 
 class AuthService {
   final dio = new Dio();

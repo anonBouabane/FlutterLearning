@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopgood/generated/locale_keys.g.dart';
 import 'package:shopgood/proverder/authprovider.dart';
-import 'package:shopgood/proverder/banner_provider.dart'; 
-import 'package:shopgood/view/compunent/product.dart';
+import 'package:shopgood/proverder/banner_provider.dart';
+import 'package:shopgood/compunent/product.dart';
 import 'package:shopgood/proverder/category_provider.dart';
+import 'package:shopgood/proverder/product_provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,9 +17,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Future<void> changeLanguage() async {
+    Locale? currentLocal = EasyLocalization.of(context)!.currentLocale;
+    if (currentLocal == const Locale('en', 'US')) {
+      EasyLocalization.of(context)!.setLocale(const Locale('lo', 'LA'));
+    } else {
+      EasyLocalization.of(context)!.setLocale(const Locale('en', 'US'));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthProvider>(context);
+    final auth = Provider.of<AuthProvider>(context, listen: false);
+    final productprovider =
+        Provider.of<ProductProvider>(context, listen: false);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -25,21 +39,22 @@ class _HomeState extends State<Home> {
             Icons.menu,
             color: Colors.white,
           ),
-          title: const Text(
-            "Home",
+          title: Text(
+            LocaleKeys.home.tr(),
             style: TextStyle(
                 color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           actions: [
-            CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 15,
-              child: Icon(
-                Icons.person,
-                color: Colors.amber,
-              ),
-            ),
+            IconButton(
+                onPressed: () {
+                  changeLanguage();
+                },
+                icon: Icon(
+                  Icons.language,
+                  size: 30,
+                  color: Colors.white,
+                )),
             Padding(
               padding: EdgeInsets.all(8.0),
               child: GestureDetector(
@@ -110,7 +125,6 @@ class _HomeState extends State<Home> {
                     height: 140,
                     autoPlay: true,
                     viewportFraction: 1,
-                    // enlargeCenterPage: true,
                     autoPlayAnimationDuration: Duration(milliseconds: 100)),
                 items: bannerProvider.banners.map((i) {
                   return Builder(
@@ -134,12 +148,15 @@ class _HomeState extends State<Home> {
                   height: 50,
                   child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount:value.category.length,
+                      itemCount: value.category.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
                             value.changeCategory(index);
+                            productprovider.getdataByID(
+                                categoryID:
+                                    value.category[index].id.toString());
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -161,10 +178,10 @@ class _HomeState extends State<Home> {
                 );
               },
             ),
-            const Row(
+            Row(
               children: [
                 Text(
-                  'Product',
+                  LocaleKeys.product.tr(),
                   style:
                       TextStyle(color: Colors.deepPurpleAccent, fontSize: 26),
                 ),

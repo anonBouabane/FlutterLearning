@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 
-class DetailItemScreen extends StatefulWidget {
-  const DetailItemScreen({super.key});
+class DetailItemScreen extends StatelessWidget {
+  final String image;
+  const DetailItemScreen({super.key,required this.image});
 
-  @override
-  State<DetailItemScreen> createState() => _DetailItemScreenState();
-}
-
-class _DetailItemScreenState extends State<DetailItemScreen> {
   @override
   Widget build(BuildContext context) {
     return  Stack(
         children: [
-          Image.asset(
-            "assets/images/picture.png",
+          Image.network(
+            image.toString(),
             height: 300,
             fit: BoxFit.cover,
             width: double.infinity,

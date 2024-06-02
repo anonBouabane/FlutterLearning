@@ -6,4 +6,7 @@ class ApiPath {
   static const String refreshToken = "${baseUrl}/user/refreshToken";
   static const String getallBanner = "${baseUrl}/banner/getAll";
   static const String getallCategory = "${baseUrl}/category/getAll";
+
+  static String getProductAll = "${baseUrl}/product/getAll";
+  static String getProductByCategory = "${baseUrl}/product/getByCategory/";
 }

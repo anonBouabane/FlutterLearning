@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:shopgood/router/route.dart';
 import 'package:shopgood/service/auth_service.dart';
-import 'package:shopgood/view/compunent/message.dart';
+import 'package:shopgood/compunent/message.dart';
 
 class AuthProvider extends ChangeNotifier {
   dynamic _userData;
